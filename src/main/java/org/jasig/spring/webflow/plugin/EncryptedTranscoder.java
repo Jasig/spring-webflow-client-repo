@@ -24,10 +24,15 @@ import org.cryptacular.bean.KeyStoreFactoryBean;
 import org.cryptacular.generator.sp80038a.RBGNonce;
 import org.cryptacular.io.URLResource;
 import org.cryptacular.spec.BufferedBlockCipherSpec;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.Advised;
+import org.springframework.aop.support.AopUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
@@ -40,15 +45,21 @@ import java.util.zip.GZIPOutputStream;
  * {@link CipherBean}. Default ciphering mode is set to 128-bit AES in CBC mode with compression.
  * <p>
  * Optional gzip compression of the serialized byte stream before encryption is supported and enabled by default.
+ *
  * @author Marvin S. Addison
  * @author Misagh Moayyed
  */
 public class EncryptedTranscoder implements Transcoder {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    /** Handles encryption/decryption details. */
+    /**
+     * Handles encryption/decryption details.
+     */
     private CipherBean cipherBean;
 
-    /** Flag to indicate whether to Gzip compression before encryption. */
+    /**
+     * Flag to indicate whether to Gzip compression before encryption.
+     */
     private boolean compression = true;
 
     public EncryptedTranscoder() throws IOException {
@@ -86,12 +97,37 @@ public class EncryptedTranscoder implements Transcoder {
             } else {
                 out = new ObjectOutputStream(outBuffer);
             }
-            out.writeObject(o);
+            writeObjectToOutputStream(o, out);
+        } catch (final NotSerializableException e) {
+            logger.warn(e.getMessage(), e);
         } finally {
             if (out != null) {
                 out.close();
             }
         }
+        return encrypt(outBuffer);
+    }
+
+    protected void writeObjectToOutputStream(final Object o, final ObjectOutputStream out) throws IOException {
+        Object object = o;
+        if (AopUtils.isAopProxy(o)) {
+            try {
+                object = Advised.class.cast(o).getTargetSource().getTarget();
+            } catch (final Exception e) {
+                logger.error(e.getMessage(), e);
+            }
+            if (object == null) {
+                logger.error("Could not determine object [{}] from proxy", o.getClass().getSimpleName());
+            }
+        }
+        if (object != null) {
+            out.writeObject(object);
+        } else {
+            logger.warn("Unable to write object [{}] to the output stream", o);
+        }
+    }
+
+    protected byte[] encrypt(final ByteArrayOutputStream outBuffer) throws IOException {
         try {
             return cipherBean.encrypt(outBuffer.toByteArray());
         } catch (Exception e) {
