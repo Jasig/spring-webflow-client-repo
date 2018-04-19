@@ -1,4 +1,4 @@
-# Spring Webflow Client Repository [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jasig/spring-webflow-client-repo/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.jasig/spring-webflow-client-repo)
+# Spring Webflow Client Repository [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo)
 
 This project provides a facility for storing flow execution state on the client
 in Spring Webflow 2.x. Flow state is stored as an encoded byte stream in the
@@ -10,7 +10,7 @@ that was available for Spring Webflow 1.x, but with the following notable improv
 * Support for conversation management (e.g. flow scope)
 * Encryption of encoded flow state to prevent tampering by malicious clients
 
-## Building [![Build Status](https://api.travis-ci.org/Jasig/spring-webflow-client-repo.png)](http://travis-ci.org/Jasig/spring-webflow-client-repo)
+## Building [![Build Status](https://api.travis-ci.org/apereo/spring-webflow-client-repo.png)](http://travis-ci.org/apereo/spring-webflow-client-repo)
 
 ```bash
 mvn clean install
@@ -21,9 +21,9 @@ Add spring-webflow-client-repo to your application:
 
 ```xml
 <dependency>
-    <groupId>org.jasig</groupId>
+    <groupId>org.apereo</groupId>
     <artifactId>spring-webflow-client-repo</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
@@ -47,7 +47,7 @@ to wire up the component in a Webflow project:
       p:executionKeyFactory-ref="flowExecutionRepository"
       p:executionListenerLoader-ref="listenerLoader"/>
 
-<bean id="flowExecutionRepository" class="org.jasig.spring.webflow.plugin.ClientFlowExecutionRepository">
+<bean id="flowExecutionRepository" class="org.apereo.spring.webflow.plugin.ClientFlowExecutionRepository">
   <constructor-arg ref="flowExecutionFactory" />
   <constructor-arg ref="flowRegistry" />
   <constructor-arg ref="transcoder" />
@@ -65,7 +65,7 @@ to wire up the component in a Webflow project:
   </constructor-arg>
 </bean>
 
-<bean id="transcoder" class="org.jasig.spring.webflow.plugin.EncryptedTranscoder"
+<bean id="transcoder" class="org.apereo.spring.webflow.plugin.EncryptedTranscoder"
       p:compression="true" />
 ```
 

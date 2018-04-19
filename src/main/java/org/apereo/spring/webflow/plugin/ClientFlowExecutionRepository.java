@@ -1,8 +1,8 @@
-/*
- * Licensed to Jasig under one or more contributor license
+/**
+ * Licensed to Apereo under one or more contributor license
  * agreements. See the NOTICE file distributed with this work
  * for additional information regarding copyright ownership.
- * Jasig licenses this file to you under the Apache License,
+ * Apereo licenses this file to you under the Apache License,
  * Version 2.0 (the "License"); you may not use this file
  * except in compliance with the License.  You may obtain a
  * copy of the License at the following location:
@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.jasig.spring.webflow.plugin;
+package org.apereo.spring.webflow.plugin;
 
 import org.springframework.util.Assert;
 import org.springframework.webflow.core.collection.MutableAttributeMap;
@@ -52,19 +52,19 @@ public class ClientFlowExecutionRepository implements FlowExecutionRepository, F
         public void unlock() {}
     };
 
-    private final FlowExecutionFactory flowExecutionFactory;
+    private FlowExecutionFactory flowExecutionFactory;
 
-    private final FlowDefinitionLocator flowDefinitionLocator;
+    private FlowDefinitionLocator flowDefinitionLocator;
 
-    private final Transcoder transcoder;
+    private Transcoder transcoder;
+
+    public ClientFlowExecutionRepository() {
+    }
 
     public ClientFlowExecutionRepository(
             final FlowExecutionFactory flowExecutionFactory,
             final FlowDefinitionLocator flowDefinitionLocator,
             final Transcoder transcoder) {
-        Assert.notNull(flowExecutionFactory, "FlowExecutionFactory cannot be null");
-        Assert.notNull(flowDefinitionLocator, "FlowDefinitionLocator cannot be null");
-        Assert.notNull(transcoder, "Transcoder cannot be null");
         this.flowExecutionFactory = flowExecutionFactory;
         this.flowDefinitionLocator = flowDefinitionLocator;
         this.transcoder = transcoder;
@@ -81,6 +81,10 @@ public class ClientFlowExecutionRepository implements FlowExecutionRepository, F
 
     @Override
     public FlowExecution getFlowExecution(final FlowExecutionKey key) throws FlowExecutionRepositoryException {
+        Assert.notNull(flowExecutionFactory, "FlowExecutionFactory cannot be null");
+        Assert.notNull(flowDefinitionLocator, "FlowDefinitionLocator cannot be null");
+        Assert.notNull(transcoder, "Transcoder cannot be null");
+        
         if (!(key instanceof ClientFlowExecutionKey)) {
             throw new IllegalArgumentException(
                     "Expected instance of ClientFlowExecutionKey but got " + key.getClass().getName());
@@ -120,6 +124,29 @@ public class ClientFlowExecutionRepository implements FlowExecutionRepository, F
     @Override
     public void removeAllFlowExecutionSnapshots(final FlowExecution execution) {}
 
+    public FlowExecutionFactory getFlowExecutionFactory() {
+        return flowExecutionFactory;
+    }
+
+    public FlowDefinitionLocator getFlowDefinitionLocator() {
+        return flowDefinitionLocator;
+    }
+
+    public Transcoder getTranscoder() {
+        return transcoder;
+    }
+
+    public void setFlowExecutionFactory(final FlowExecutionFactory flowExecutionFactory) {
+        this.flowExecutionFactory = flowExecutionFactory;
+    }
+
+    public void setFlowDefinitionLocator(final FlowDefinitionLocator flowDefinitionLocator) {
+        this.flowDefinitionLocator = flowDefinitionLocator;
+    }
+
+    public void setTranscoder(final Transcoder transcoder) {
+        this.transcoder = transcoder;
+    }
 
     private static class SerializedFlowExecutionState implements Serializable {
         private static final long serialVersionUID = -4020991769174829876L;

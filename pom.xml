@@ -1,19 +1,39 @@
+<!--
+
+    Licensed to Apereo under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Apereo licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License.  You may obtain a
+    copy of the License at the following location:
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.jasig.parent</groupId>
         <artifactId>jasig-parent</artifactId>
-        <version>39</version>
+        <version>41</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jasig</groupId>
+    <groupId>org.apereo</groupId>
     <artifactId>spring-webflow-client-repo</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Spring Webflow Client Repository</name>
     <description>Flow execution storage on client via form/request parameter.</description>
-    <url>https://github.com/Jasig/spring-webflow-client-repo</url>
+    <url>https://github.com/Apereo/spring-webflow-client-repo</url>
     <inceptionYear>2013</inceptionYear>
 
     <licenses>
@@ -26,8 +46,8 @@
 
     <repositories>
         <repository>
-            <id>vt-middleware</id>
-            <url>https://raw.github.com/vt-middleware/maven-repo/master</url>
+            <id>Apereo</id>
+            <url>https://github.com/apereo/spring-webflow-client-repo</url>
             <snapshots />
         </repository>
     </repositories>
@@ -51,9 +71,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:Jasig/spring-webflow-client-repo.git</connection>
-        <developerConnection>scm:git:git@github.com:Jasig/spring-webflow-client-repo.git</developerConnection>
-        <url>https://github.com/Jasig/spring-webflow-client-repo</url>
+        <connection>scm:git:git@github.com:Apereo/spring-webflow-client-repo.git</connection>
+        <developerConnection>scm:git:git@github.com:Apereo/spring-webflow-client-repo.git</developerConnection>
+        <url>https://github.com/Apereo/spring-webflow-client-repo</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -202,48 +222,6 @@
                     <source>${project.build.sourceVersion}</source>
                     <target>${project.build.targetVersion}</target>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <configuration>
-                    <header>src/etc/header.txt</header>
-                    <skipExistingHeaders>true</skipExistingHeaders>
-                    <headerDefinitions>
-                        <headerDefinition>src/etc/header-definitions.xml</headerDefinition>
-                    </headerDefinitions>
-                    <mapping>
-                        <schema>SCRIPT_STYLE</schema>]
-                        <ldif>SCRIPT_STYLE</ldif>
-                        <yml>SCRIPT_STYLE</yml>
-                        <conf>JAVADOC_STYLE</conf>
-                    </mapping>
-                    <strictCheck>true</strictCheck>
-                    <excludes>
-                        <exclude>LICENSE</exclude>
-                        <exclude>**/INSTALL*</exclude>
-                        <exclude>**/NOTICE*</exclude>
-                        <exclude>**/README*</exclude>
-                        <exclude>**/*.iml</exclude>
-                        <exclude>**/*.jceks</exclude>
-                        <exclude>**/*.log</exclude>
-                        <exclude>**/*.license</exclude>
-                        <exclude>**/.gitignore</exclude>
-                        <exclude>**/.project</exclude>
-                        <exclude>src/etc/**</exclude>
-                        <exclude>**/.eclipse/**</exclude>
-                        <exclude>**/.idea/**</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
