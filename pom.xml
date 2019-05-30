@@ -227,7 +227,7 @@
         <project.build.targetVersion>1.7</project.build.targetVersion>
 
         <!-- Dependency Versions -->
-        <spring.webflow.version>2.4.1.RELEASE</spring.webflow.version>
+        <spring.webflow.version>2.5.1.RELEASE</spring.webflow.version>
         <commons.codec.version>1.12</commons.codec.version>
         <cryptacular.version>1.2.3</cryptacular.version>
         <junit.version>4.12</junit.version>
