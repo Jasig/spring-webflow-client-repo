@@ -234,11 +234,11 @@
 
         <!-- Dependency Versions -->
         <spring.webflow.version>2.4.1.RELEASE</spring.webflow.version>
-        <commons.codec.version>1.9</commons.codec.version>
-        <cryptacular.version>1.0</cryptacular.version>
-        <junit.version>4.11</junit.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        <spring.version>4.1.1.RELEASE</spring.version>
+        <commons.codec.version>1.12</commons.codec.version>
+        <cryptacular.version>1.2.3</cryptacular.version>
+        <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.26</slf4j.version>
+        <spring.version>5.1.7.RELEASE</spring.version>
         <log4j.version>1.2.17</log4j.version>
     </properties>
 </project>
