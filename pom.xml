@@ -228,7 +228,7 @@
 
         <!-- Dependency Versions -->
         <spring.webflow.version>2.5.1.RELEASE</spring.webflow.version>
-        <commons.codec.version>1.12</commons.codec.version>
+        <commons.codec.version>1.13</commons.codec.version>
         <cryptacular.version>1.2.3</cryptacular.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>1.7.26</slf4j.version>
