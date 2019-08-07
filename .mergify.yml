@@ -6,9 +6,6 @@ pull_request_rules:
     - "#changes-requested-reviews-by=0"
     - base=master
     - label=dependencies
-    - author=dependabot[bot]
-    - author=dependabot-preview[bot]
-    - author=dependabot
   actions:
     merge:
       method: merge
