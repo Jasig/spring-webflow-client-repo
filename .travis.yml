@@ -6,6 +6,7 @@ env:
 branches:
   only:
   - master
+jdk: openjdk8
 before_install:
 - chmod -R 777 ./travis/init-travis-build.sh
 - ./travis/init-travis-build.sh
