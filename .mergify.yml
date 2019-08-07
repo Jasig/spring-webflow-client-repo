@@ -5,7 +5,6 @@ pull_request_rules:
     - status-success=WIP
     - "#changes-requested-reviews-by=0"
     - base=master
-    - author=dependabot-preview
     - author=dependabot[bot]
   actions:
     merge:
