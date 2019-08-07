@@ -1,4 +1,7 @@
-# Spring Webflow Client Repository [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo)
+# Spring Webflow Client Repository [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/org.apereo/spring-webflow-client-repo) [![Mergify Status][mergify-status]][mergify]
+
+[mergify]: https://mergify.io
+[mergify-status]: https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/apereo/spring-webflow-client-repo&style=flat
 
 This project provides a facility for storing flow execution state on the client
 in Spring Webflow 2.x. Flow state is stored as an encoded byte stream in the
